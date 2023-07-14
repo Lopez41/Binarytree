@@ -72,7 +72,7 @@ void BinTree::clear(DataNode* node)
         delete node;
     }
 }
-//here
+
 // Public method: addNode
 bool BinTree::addNode(int id, const string* information)
  {
@@ -114,4 +114,60 @@ bool BinTree::addNode(DataNode* newNode, DataNode** node)
 
     return success;
 }
+// Public method: removeNode
+bool BinTree::removeNode(int id) 
+{
+   bool success = false;
 
+    if (isEmpty()) 
+    {
+        success = false;
+    } 
+    else 
+    {
+        if (contains(id)) 
+        {
+            root = removeNode(id, root);
+            count--;
+            success = true;
+        } 
+        else
+        {
+            success = false;
+        }
+    }
+
+    return success;
+}
+
+// Private recursive method: removeNode
+DataNode* BinTree::removeNode(int id, DataNode* node) {
+     if (node == nullptr)
+      {
+        return nullptr;
+    } else if (id < node->data.id) {
+        node->left = removeNode(id, node->left);
+        return node;
+    } else if (id > node->data.id) {
+        node->right = removeNode(id, node->right);
+        return node;
+    } else {
+        if (node->left == nullptr) {
+            DataNode* temp = node->right;
+            delete node;
+            return temp;
+        } else if (node->right == nullptr) {
+            DataNode* temp = node->left;
+            delete node;
+            return temp;
+        } else {
+            DataNode* temp = node->right;
+            while (temp->left != nullptr) {
+                temp = temp->left;
+            }
+            node->data = temp->data;
+            node->right = removeNode(temp->data.id, node->right);
+            return node;
+        }
+    }
+}
