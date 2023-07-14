@@ -114,6 +114,7 @@ bool BinTree::addNode(DataNode* newNode, DataNode** node)
 
     return success;
 }
+
 // Public method: removeNode
 bool BinTree::removeNode(int id) 
 {
@@ -142,34 +143,47 @@ bool BinTree::removeNode(int id)
 
 // Private recursive method: removeNode
 DataNode* BinTree::removeNode(int id, DataNode* node) {
-     if (node == nullptr)
-      {
+DataNode* result = node;
+
+    if (node == nullptr) 
+    {
         return nullptr;
-    } else if (id < node->data.id) {
+    } 
+    else if (id < node->data.id)
+    {
         node->left = removeNode(id, node->left);
-        return node;
-    } else if (id > node->data.id) {
+    }
+    else if (id > node->data.id) 
+    {
         node->right = removeNode(id, node->right);
-        return node;
-    } else {
-        if (node->left == nullptr) {
+    } 
+    else 
+    {
+        if (node->left == nullptr) 
+        {
             DataNode* temp = node->right;
             delete node;
-            return temp;
-        } else if (node->right == nullptr) {
+            result = temp; 
+        } 
+        else if (node->right == nullptr) 
+        {
             DataNode* temp = node->left;
             delete node;
-            return temp;
-        } else {
+            result = temp;
+        } 
+        else 
+        {
             DataNode* temp = node->right;
-            while (temp->left != nullptr) {
+            while (temp->left != nullptr) 
+            {
                 temp = temp->left;
             }
             node->data = temp->data;
             node->right = removeNode(temp->data.id, node->right);
-            return node;
         }
     }
+
+    return result; 
 }
 
 // Public method: getNode
