@@ -250,7 +250,7 @@ bool BinTree::contains(int id, DataNode* node)
 
     return success;
 }
-//here
+
 // Public method: getHeight
 int BinTree::getHeight() 
 {
@@ -270,3 +270,21 @@ int BinTree::getHeight(DataNode* node)
 
     return height;
 }
+
+// Public method: displayPreOrder
+void BinTree::displayPreOrder() 
+{
+    displayPreOrder(root);
+}
+
+// Private recursive method: displayPreOrder
+void BinTree::displayPreOrder(DataNode* node) 
+{
+    if (node != nullptr) 
+    {
+        cout << node->data.id << " " << node->data.information << endl;
+        displayPreOrder(node->left);
+        displayPreOrder(node->right);
+    }
+}
+
