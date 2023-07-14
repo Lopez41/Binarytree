@@ -28,4 +28,30 @@ bool BinTree::isEmpty()
 {
     return (count == 0);
 }
+//start here
+// Public method: getCount
+int BinTree::getCount() 
+{
+    return count;
+}
+
+// Public method: getRootData
+bool BinTree::getRootData(Data* outputData)
+{ 
+ bool success = false;
+
+    if (root != nullptr) 
+    {
+        outputData->id = root->data.id;
+        outputData->information = root->data.information;
+        success = true;
+    }
+    else 
+    {
+        outputData->id = -1;
+        outputData->information = "";
+    }
+
+    return success;
+}
 
