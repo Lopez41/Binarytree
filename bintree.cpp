@@ -220,7 +220,7 @@ bool BinTree::getNode(Data* outputData, int id, DataNode* node)
 
     return success;
 }
-// here
+
 // Public method: contains
 bool BinTree::contains(int id) 
 {
@@ -250,4 +250,23 @@ bool BinTree::contains(int id, DataNode* node)
 
     return success;
 }
+//here
+// Public method: getHeight
+int BinTree::getHeight() 
+{
+    return getHeight(root);
+}
 
+// Private recursive method: getHeight
+int BinTree::getHeight(DataNode* node)
+{
+    int height = 0;
+
+    if (node != nullptr) {
+        int leftHeight = getHeight(node->left);
+        int rightHeight = getHeight(node->right);
+        height = 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
+    }
+
+    return height;
+}
