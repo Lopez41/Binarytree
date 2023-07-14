@@ -55,7 +55,6 @@ bool BinTree::getRootData(Data* outputData)
     return success;
 }
 
-
 // Public method: clear
 void BinTree::clear() 
 {
@@ -72,5 +71,47 @@ void BinTree::clear(DataNode* node)
         clear(node->right);
         delete node;
     }
+}
+//here
+// Public method: addNode
+bool BinTree::addNode(int id, const string* information)
+ {
+    DataNode* newNode = new DataNode;
+    newNode->data.id = id;
+    newNode->data.information = *information;
+    newNode->left = nullptr;
+    newNode->right = nullptr;
+
+    bool nodeAdded = addNode(newNode, &root);
+    if (nodeAdded) 
+    {
+        count++;
+    }
+    return nodeAdded;
+}
+
+// Private recursive method: addNode
+bool BinTree::addNode(DataNode* newNode, DataNode** node) 
+{
+   bool success = false;
+
+    if (*node == nullptr) 
+    {
+        *node = newNode;
+        success = true;
+    } 
+    else 
+    {
+        if (newNode->data.id < (*node)->data.id) 
+        {
+            success = addNode(newNode, &((*node)->left));
+        } 
+        else 
+        {
+            success = addNode(newNode, &((*node)->right));
+        }
+    }
+
+    return success;
 }
 
