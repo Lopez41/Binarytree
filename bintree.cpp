@@ -171,3 +171,36 @@ DataNode* BinTree::removeNode(int id, DataNode* node) {
         }
     }
 }
+
+// Public method: getNode
+bool BinTree::getNode(Data* outputData, int id)
+ {
+    return getNode(outputData, id, root);
+}
+
+// Private recursive method: getNode
+bool BinTree::getNode(Data* outputData, int id, DataNode* node) 
+{
+    bool success = false;
+
+    if (node == nullptr) 
+    {
+        success = false;
+    } 
+    else if (id < node->data.id) 
+    {
+        success = getNode(outputData, id, node->left);
+    } 
+    else if (id > node->data.id) 
+    {
+        success = getNode(outputData, id, node->right);
+    } 
+    else 
+    {
+        outputData->id = node->data.id;
+        outputData->information = node->data.information;
+        success = true;
+    }
+
+    return success;
+}
