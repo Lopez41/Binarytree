@@ -45,7 +45,7 @@ bool BinTree::getRootData(Data* outputData)
         outputData->id = root->data.id;
         outputData->information = root->data.information;
         success = true;
-    }
+    } 
     else 
     {
         outputData->id = -1;
@@ -53,5 +53,24 @@ bool BinTree::getRootData(Data* outputData)
     }
 
     return success;
+}
+
+
+// Public method: clear
+void BinTree::clear() 
+{
+    clear(root);
+    root = nullptr;
+    count = 0;
+}
+
+// Private recursive method: clear
+void BinTree::clear(DataNode* node) 
+{
+    if (node != nullptr) {
+        clear(node->left);
+        clear(node->right);
+        delete node;
+    }
 }
 
