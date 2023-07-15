@@ -288,3 +288,29 @@ void BinTree::displayPreOrder(DataNode* node)
     }
 }
 
+// Public method: displayPostOrder
+void BinTree::displayPostOrder() 
+{
+    displayPostOrder(root);
+}
+
+// Private recursive method: displayPostOrder
+void BinTree::displayPostOrder(DataNode* node)
+{
+    if (node != nullptr) 
+    {
+        displayPostOrder(node->left);
+        displayPostOrder(node->right);
+        cout << node->data.id << " " << node->data.information << endl;
+    }
+}
+
+void BinTree::displayInOrder(DataNode* node) 
+{
+    if (node != nullptr) 
+    {
+        displayInOrder(node->left);
+        cout << node->data.id << " " << node->data.information << endl;
+        displayInOrder(node->right);
+    }
+}
