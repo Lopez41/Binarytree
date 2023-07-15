@@ -28,7 +28,7 @@ bool BinTree::isEmpty()
 {
     return (count == 0);
 }
-//start here
+
 // Public method: getCount
 int BinTree::getCount() 
 {
@@ -313,4 +313,37 @@ void BinTree::displayInOrder(DataNode* node)
         cout << node->data.id << " " << node->data.information << endl;
         displayInOrder(node->right);
     }
+}
+// Public method: displayTree
+void BinTree::displayTree() {
+    cout << "DISPLAY TREE" << endl;
+    cout << "==============================================" << endl;
+    if (isEmpty()) 
+    {
+        cout << "Tree is empty" << endl;
+        cout << "Height " << getHeight()<< endl;
+        cout << "Node count: "<< count << endl;
+        cout <<"\n";
+        cout << "Pre-Order Traversal" << endl;
+        displayPreOrder(root);
+        cout << "In-Order Traversal" << endl;
+        displayInOrder(root);
+        cout << "Post-Order Traversal" << endl;
+    } 
+    else 
+    {
+        cout << "Tree is NOT empty" << endl;
+        cout << "Height " << getHeight() << endl;
+        cout << "Node count: " << count << endl;
+        cout <<"\n";
+        cout << "Pre-Order Traversal" << endl;
+        displayPreOrder(root);
+        cout <<"\n";
+        cout << "In-Order Traversal" << endl;
+        displayInOrder(root);
+        cout <<"\n";
+        cout << "Post-Order Traversal" << endl;
+        displayPostOrder(root);
+    }
+    cout << "==============================================" << endl;
 }
